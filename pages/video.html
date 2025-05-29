@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      .video-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      video {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+
+      .video-title {
+        font-size: 24px;
+        margin-bottom: 0.5rem;
+      }
+
+      .video-date,
+      .video-creator,
+      .description {
+        margin-bottom: 1rem;
+        color: #555;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 1rem;
+      }
+
+      .controls button,
+      .controls input[type="range"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .controls input[type="range"] {
+        width: 150px;
+        padding: 0;
+        background-color: transparent;
+      }
+
+      .controls button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <main class="video-container">
+      <h2 class="video-title">Mi Video</h2>
+      <p class="video-date">28 de mayo de 2025</p>
+      <p class="video-creator">@usuario</p>
+
+      <video id="myVideo">
+        <source src="../assets/img/video.mp4" type="video/mp4" />
+        Tu navegador no soporta el video.
+      </video>
+
+      <div class="controls">
+        <button id="rewind">⏪ 10s</button>
+        <button id="playPause">▶️</button>
+        <button id="forward">⏩ 10s</button>
+        <button id="mute">🔇</button>
+        <input
+          type="range"
+          id="volumeSlider"
+          min="0"
+          max="1"
+          step="0.01"
+          value="1"
+        />
+      </div>
+
+      <p class="description">
+        Esta es la descripción de mi video de ejemplo, grabado localmente para
+        mostrar cómo se puede reproducir un archivo mp4.
+      </p>
+    </main>
+
+    <script>
+ 
+      window.addEventListener("DOMContentLoaded", () => {
+        fetch("../components/header.html")
+          .then((res) => {
+            if (!res.ok) throw new Error("No se pudo cargar el header.");
+            return res.text();
+          })
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          })
+          .catch((err) => console.error("Error cargando el header:", err));
+      });
+
+      const video = document.getElementById("myVideo");
+      const playPauseBtn = document.getElementById("playPause");
+      const rewindBtn = document.getElementById("rewind");
+      const forwardBtn = document.getElementById("forward");
+      const muteBtn = document.getElementById("mute");
+      const volumeSlider = document.getElementById("volumeSlider");
+
+      // Play / Pause con ternario
+      playPauseBtn.addEventListener("click", () => {
+        video.paused ? video.play() : video.pause();
+        playPauseBtn.textContent = video.paused ? "▶️" : "⏸️";
+      });
+
+     
+      video.addEventListener("play", () => {
+        playPauseBtn.textContent = "⏸️";
+      });
+
+      video.addEventListener("pause", () => {
+        playPauseBtn.textContent = "▶️";
+      });
+
+      // Rebobinar
+      rewindBtn.addEventListener("click", () => {
+        video.currentTime -= 10;
+      });
+
+      // Adelantar
+      forwardBtn.addEventListener("click", () => {
+        video.currentTime += 10;
+      });
+
+      muteBtn.addEventListener("click", () => {
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? "🔇" : "🔊";
+      });
+
+
+      volumeSlider.addEventListener("input", () => {
+        video.volume = volumeSlider.value;
+        video.muted = video.volume === 0;
+        muteBtn.textContent = video.muted ? "🔇" : "🔊";
+      });
+    </script>
+  </body>
+</html>

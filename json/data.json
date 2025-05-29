@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombre": "Introducción a HTML",
+    "autor": "Juan Pérez",
+    "vistas": 1200,
+    "imagen": "https://img.youtube.com/vi/UB1O30fR-EE/0.jpg",
+    "url": "pages/video.html"
+  },
+  {
+    "id": 2,
+    "nombre": "CSS desde cero",
+    "autor": "Ana Gómez",
+    "vistas": 950,
+    "imagen": "https://img.youtube.com/vi/yfoY53QXEnI/0.jpg",
+"url": "pages/video.html"
+  },
+  {
+    "id": 3,
+    "nombre": "JavaScript para principiantes",
+    "autor": "Carlos López",
+    "vistas": 2000,
+    "imagen": "https://img.youtube.com/vi/W6NZfCO5SIk/0.jpg",
+    "url": "pages/video.html"
+  },
+  {
+    "id": 4,
+    "nombre": "React.js desde cero",
+    "autor": "María Fernández",
+    "vistas": 1800,
+    "imagen": "https://img.youtube.com/vi/dGcsHMXbSOA/0.jpg",
+    "url": "pages/video.html"
+  },
+  {
+    "id": 5,
+    "nombre": "Node.js para desarrolladores",
+    "autor": "Luis Martínez",
+    "vistas": 1500,
+    "imagen": "https://img.youtube.com/vi/TlB_eWDSMt4/0.jpg",
+    "url": "pages/video.html"
+  }
+]

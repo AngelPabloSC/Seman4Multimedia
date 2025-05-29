@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div id="main"></div>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        fetch("components/header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          });
+
+        fetch("pages/home.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("main").innerHTML = data;
+
+            // Re-ejecutar scripts insertados (importantísimo)
+            const scripts = document
+              .getElementById("main")
+              .querySelectorAll("script");
+            scripts.forEach((oldScript) => {
+              const newScript = document.createElement("script");
+              newScript.textContent = oldScript.textContent;
+              document.body.appendChild(newScript);
+              oldScript.remove();
+            });
+          });
+      });
+    </script>
+  </body>
+</html>

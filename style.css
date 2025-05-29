@@ -1,0 +1,48 @@
+:root {
+  --color-primary: #ECFAE5;
+  --color-primary-second: #DDF6D2;
+  --color-primary-light: #CAE8BD    ;
+  --color-primary-dark: #B0DB9C;  
+} 
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: 50px ;
+  border-bottom: 2px solid var(--color-primary-dark);
+}
+
+.column {
+  flex: 1;
+}
+
+.left {
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.search-input {
+  width: 60%;
+  max-width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
